@@ -1,0 +1,58 @@
+% Dokumentklassen sættes til memoir.
+% Manual: http://ctan.org/tex-archive/macros/latex/contrib/memoir/memman.pdf
+\documentclass[a4paper,oneside]{article}
+
+% Ingen nummering af overskrifter
+\setcounter{secnumdepth}{0}
+
+% Danske udtryk (fx figur og tabel) samt dansk orddeling og fonte med
+% danske tegn. Hvis LaTeX brokker sig over æ, ø og å skal du udskifte
+% "utf8" med "latin1" eller "applemac".
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{float}
+
+% Matematisk udtryk, fede symboler, theoremer og fancy ting (fx kædebrøker)
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{amsthm}
+
+% Kodelisting. Husk at læse manualen hvis du vil lave fancy ting.
+% Manual: http://mirror.ctan.org/macros/latex/contrib/listings/listings.pdf
+\usepackage{pxfonts}
+\usepackage{listings}
+\lstset{language=VHDL,
+	basicstyle=\ttfamily,
+	keywordstyle=\bfseries,
+	frame=single,
+	numbers=left,
+	breaklines=true,
+	numberstyle=\footnotesize,
+	tabsize=4, 
+	showstringspaces=false
+	%morekeywords={include, printf}
+}
+
+% Fancy ting med enheder og datatabeller. Læs manualen til pakken
+% Manual: http://www.ctan.org/tex-archive/macros/latex/contrib/siunitx/siunitx.pdf
+\usepackage{booktabs}
+
+% Indsættelse af grafik.
+\usepackage{graphicx,wrapfig}
+%\usepackage[section,subsection,subsubsection]{extraplaceins}
+\begin{document}
+\input{subpages/Frontpage}
+\renewcommand{\lstlistingname}{Kode}
+
+\tableofcontents
+
+\newpage
+\input{subpages/Oevelse2}
+\newpage
+\input{subpages/Oevelse3}
+\newpage
+\input{subpages/Oevelse4}
+
+\end{document}
