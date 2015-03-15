@@ -99,5 +99,38 @@ Vi tester nu med ugyldigt input (over 9) og får som forventet blankt output som
 			
 			end selection;
 			\end{lstlisting}
+	Vi kan nu lave en functional simulation i Quartus som ses på figur \ref{fig:2SegFuncSim}:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.6]{pictures/Oevelse4/BCD_decoder/BCD_2segFuncSim.jpg}
+		\caption{Functional simulation af to 7-segments decoder}
+		\label{fig:2SegFuncSim}
+	\end{figure}
 	
+	\item[5)]
+	Vi sætter input V[3:0] på DE2-boardet, så vi kan tælle op til 15. Først ses billede af realiseringen med 0 som input på figur \ref{fig:2Seg0}:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.6]{pictures/Oevelse4/BCD_decoder/BCD_2seg_0.jpg}
+		\caption{BCD til to 7-segments decodere med 0 som input}
+		\label{fig:2Seg0}
+	\end{figure}
+
+Realiseringen med 10 som input ses på figur \ref{fig:2Seg10}:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.6]{pictures/Oevelse4/BCD_decoder/BCD_2seg_10.jpg}
+		\caption{BCD til to 7-segments decodere med 10 som input}
+		\label{fig:2Seg10}
+	\end{figure}
+	
+Realiseringen med 15 som input ses på figur \ref{fig:2Seg15}:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.6]{pictures/Oevelse4/BCD_decoder/BCD_2seg_15.jpg}
+		\caption{BCD til to 7-segments decodere med 15 som input}
+		\label{fig:2Seg15}
+	\end{figure}
+
+
 \end{enumerate}
