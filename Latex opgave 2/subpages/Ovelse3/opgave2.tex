@@ -70,13 +70,13 @@
 	end dataflow;
 	\end{lstlisting}
 	
-	\begin{figure}[H]
-		
+	\begin{figure}[htpb]
 		\centering
 		\includegraphics[width=0.8\textwidth]{pictures/Oevelse3/four_bit_signed_adder1.jpg}
 		\caption{Four bit signed adder - 1000 + 0100}
 		\label{fig:4bitSignedAdder1100}
 	\end{figure}
+	\FloatBarrier
 \item[5)]
 Vi laver nu vores unsigned adder om, så den også virker med et carry in, og leverer et carry out som vist på Figur \ref{fig:4bitUnsignedAdderCarry}. Vi benytter os af resize funktionen, samt laver nogle interne signaler, inden vi sender resultatet ud igen. Koden ses i Kode \ref{lst:4bitunsignedCarryDataflowCode}.
 	\begin{figure}[H]
