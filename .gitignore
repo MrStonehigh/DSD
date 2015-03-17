@@ -196,3 +196,7 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+*.pdf
+
+Latex opgave 2/Journal1.pdf
