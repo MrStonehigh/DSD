@@ -1,10 +1,65 @@
-\section{Opgave 1 - Half-adder}
+\section{Half-adder}
 \begin{enumerate}
 	\item[1)]
 	Architecture body i VHDL kan skrives på tre forskellige måder; dataflow, behavioral og structural. \\
 	Half-adder beskrives i Dataflow style ved hjælp af direkte implementering af logiske gates. Skrivemåden gør det nemt at overføre programmet direkte til hardware og de logiske gates. \\
 	I Behavioral style opskrives half-adderen ved brug af if/else statements. Dette giver en god forståelse af selve half-adderens funktion, men det er kompliceret at overføre det til logiske gates ud fra kodens syntax. \\
 	I structural style laves et miks af de to ovenstående, da der først defineres en funktion for hver logisk gate som det ses i dataflow style, og derefter implementeres funktionerne i halfadder entity’en. Denne style er god at bruge, hvis man skal implementere en funktion flere gange.\\
+	De forskellige koder kan ses på figur \ref{lst:DataHalfAddCode}, \ref{lst:BehaHalfAddCode} og \ref{lst:StruHalfAddCode}
+	\begin{lstlisting}[caption={Dataflow half-adder kode},label={lst:DataHalfAddCode}]
+	library ieee;
+	use ieee.std_logic_1164.all;
+	
+	entity half_adder_dataflow is
+	port (a,b : in std_logic;
+	sum, carry_out: out std_logic);
+	end half_adder_dataflow;
+	
+	architecture dataflow of half_adder_dataflow is
+	begin
+	sum <= a xor b;
+	carry_out <= a and b;
+	end dataflow;
+	\end{lstlisting}
+		\begin{lstlisting}[caption={Behavioral style half-adder kode},label={lst:BehaHalfAddCode}]
+		library ieee;
+		use ieee.std_logic_1164.all;
+		
+		entity half_adder_behavioral is
+		port (a, b : in std_logic;
+		sum, carry_out: out std_logic);
+		end half_adder_behavioral;
+		
+		architecture behavioral of half_adder_behavioral is
+		begin
+		ha: process (a, b)
+		begin
+		if a = '1' then
+		sum <= not b;
+		carry_out <= b;
+		else
+		sum <= b;
+		carry_out <= '0';
+		end if;
+		end process ha;
+		
+		end behavioral;
+		\end{lstlisting}
+			\begin{lstlisting}[caption={Structural half-adder kode},label={lst:StruHalfAddCode}]
+			library ieee;
+			use ieee.std_logic_1164.all;
+			
+			entity half_adder_structural is
+			port (a, b : in std_logic;
+			sum, carry_out: out std_logic);
+			end half_adder_structural;
+			
+			architecture structure of half_adder_structural is
+			begin
+			u1: entity work.xor_2 port map (i1 => a, i2 => b, o1 => sum);
+			u2: entity work.and_2 port map (i1 => a, i2 => b, o1 => carry_out);
+			end structure;
+			\end{lstlisting}
 	\item[2)]
 	Et RTL view af de tre forskellige måder at skrive en half-adder på, giver følgende forskellige resultater:\\
 \begin{figure}[h]

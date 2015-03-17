@@ -1,5 +1,5 @@
 \newpage
-\section{Opgave 2 - Four bit adder - using signed/unsigned logic}
+\section{Four bit adder - using signed/unsigned logic}
 
 \begin{enumerate}
 	\item[1)]
@@ -57,26 +57,26 @@
 	use ieee.std_logic_1164.all;
 	use ieee.numeric_std.all;
 	
-	entity unsigned_adder is
+	entity signed_adder is
 	port (a: in std_logic_vector (3 downto 0);
 	b: in std_logic_vector (3 downto 0);
 	sum: out std_logic_vector (3 downto 0));
-	end unsigned_adder;
+	end signed_adder;
 	
 	architecture dataflow of unsigned_adder is
 	begin
 	
-	sum <= std_logic_vector(unsigned(a) + unsigned(b));
+	sum <= std_logic_vector(signed(a) + signed(b));
 	end dataflow;
 	\end{lstlisting}
 	
-	\begin{figure}[H]
-		
+	\begin{figure}[htpb]
 		\centering
 		\includegraphics[width=0.8\textwidth]{pictures/Oevelse3/four_bit_signed_adder1.jpg}
 		\caption{Four bit signed adder - 1000 + 0100}
 		\label{fig:4bitSignedAdder1100}
 	\end{figure}
+	\FloatBarrier
 \item[5)]
 Vi laver nu vores unsigned adder om, så den også virker med et carry in, og leverer et carry out som vist på Figur \ref{fig:4bitUnsignedAdderCarry}. Vi benytter os af resize funktionen, samt laver nogle interne signaler, inden vi sender resultatet ud igen. Koden ses i Kode \ref{lst:4bitunsignedCarryDataflowCode}.
 	\begin{figure}[H]
@@ -114,7 +114,7 @@ Vi laver nu vores unsigned adder om, så den også virker med et carry in, og le
 	Vi overfører vores adder til DE2 boardet. Her adderer vi 1110 + 0011 samt carry in = 1, og får det forventede resultat som ses på figur \ref{fig:4bitUnsignedAdderCarry10100}.
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.8\textwidth]{pictures/Oevelse3/4bit_unsigned_adder_carry2.jpg}
+		\includegraphics[width=0.8\textwidth]{pictures/Oevelse3/4bit_unsigned_adder_carry3.jpg}
 		\caption{Four bit unsigned adder with carry}
 		\label{fig:4bitUnsignedAdderCarry10100}
 	\end{figure}

@@ -1,4 +1,5 @@
-\section{Opgave 3: BCD adder}
+\section{BCD adder}
+\FloatBarrier
 \begin{enumerate}
 	\item[1)]
 	Vi skriver koden for to-input til to 7-segment decoders:
@@ -252,22 +253,25 @@ seg100<="0000001" when (M100 = "00000") else
 end selection;
 		\end{lstlisting}
 
-Vi overfører programmet til DE2-boardet. SW[3:0] er input A1, SW[7:4] er input A10, SW[11:8] er input B1, SW[15:12] er input B10, HEX4 er segA1, HEX6 er segB1, HEX0 er seg1, HEX1 er seg10 og HEX2 er seg100. Vi sætter 0 og 0 som input som ses på figur \ref{fig:BCD_2seg_adder_0}
+Vi overfører programmet til DE2-boardet. SW[3:0] er input A1, SW[7:4] er input A10, SW[11:8] er input B1, SW[15:12] er input B10, HEX4 er segA1, HEX6 er segB1, HEX0 er seg1, HEX1 er seg10 og HEX2 er seg100. 
 \begin{figure}[h]
+	Vi sætter 0 og 0 som input som ses på figur \ref{fig:BCD_2seg_adder_0}
 	\centering
 	\includegraphics[scale=0.6]{pictures/Oevelse4/BCD_adder/BCD_2seg_adder_0.jpg}
 	\caption{To-input BCD adder med 2-cifret input på 00 og 00 og 3-cifret output}
 	\label{fig:BCD_2seg_adder_0}
 \end{figure}
-Vi sætter 69 og 69 som input som ses på figur \ref{fig:BCD_2seg_adder_138}:
+
 \begin{figure}[h]
+	Vi sætter 69 og 69 som input som ses på figur \ref{fig:BCD_2seg_adder_138}:
 	\centering
 	\includegraphics[scale=0.6]{pictures/Oevelse4/BCD_adder/BCD_2seg_adder_138.jpg}
 	\caption{To-input BCD adder med 2-cifret input på 69 og 69 og 3-cifret output}
 	\label{fig:BCD_2seg_adder_138}
 \end{figure}
-Vi sætter 99 og 99 som input (maksimale værdier) som ses på figur \ref{fig:BCD_2seg_adder_198}:
+
 \begin{figure}[h]
+	Vi sætter 99 og 99 som input (maksimale værdier) som ses på figur \ref{fig:BCD_2seg_adder_198}:
 	\centering
 	\includegraphics[scale=0.6]{pictures/Oevelse4/BCD_adder/BCD_2seg_adder_198.jpg}
 	\caption{to-input BCD adder med 2-cifret input på 99 og 99 og 3-cifret output}

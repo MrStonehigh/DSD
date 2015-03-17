@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt,fleqn,twoside,openany]{memoir} 	% Openright aabner kapitler paa hoejresider (openany begge)
+\documentclass[a4paper,11pt,fleqn,twoside,openright]{memoir} 	% Openright aabner kapitler paa hoejresider (openany begge)
 
 %%%% PACKAGES %%%%
 
@@ -8,7 +8,13 @@
 \usepackage[T1]{fontenc}					% Output-indkodning af tegnsaet (T1)
 \usepackage{ragged2e,anyfontsize}			% Justering af elementer
 \usepackage{fixltx2e}						% Retter forskellige fejl i LaTeX-kernen
-																			
+\setaftersubsubsecskip{15pt}	
+\setaftersubsecskip{20pt}
+\setbeforesubsecskip{-\baselineskip}
+\setaftersecskip{25pt}
+\setbeforesecskip{1ex}
+\setaftersecskip{1ex}
+																		
 % ¤¤ Figurer og tabeller (floats) ¤¤ %
 \usepackage{graphicx} 						% Haandtering af eksterne billeder (JPG, PNG, PDF)
 \usepackage{multirow}                		% Fletning af raekker og kolonner (\multicolumn og \multirow)
@@ -17,9 +23,8 @@
 \usepackage{flafter}						% Soerger for at floats ikke optraeder i teksten foer deres reference
 \let\newfloat\relax 						% Justering mellem float-pakken og memoir
 \usepackage{float}							% Muliggoer eksakt placering af floats, f.eks. \begin{figure}[H]
-\usepackage{placeins}						% Til kommandoen \FloatBarrier
 %\usepackage{eso-pic}						% Tilfoej billedekommandoer paa hver side
-%\usepackage{wrapfig}						% Indsaettelse af figurer omsvoebt af tekst. \begin{wrapfigure}{Placering}{Stoerrelse}
+\usepackage{wrapfig}						% Indsaettelse af figurer omsvoebt af tekst. \begin{wrapfigure}{Placering}{Stoerrelse}
 %\usepackage{multicol}         	        	% Muliggoer tekst i spalter
 %\usepackage{rotating}						% Rotation af tekst med \begin{sideways}...\end{sideways}
 
@@ -29,8 +34,10 @@
 \usepackage{textcomp}                 		% Symbol-udvidelser (f.eks. promille-tegn med \textperthousand )
 \usepackage{siunitx}						% Flot og konsistent praesentation af tal og enheder med \si{enhed} og \SI{tal}{enhed}
 \sisetup{output-decimal-marker = {,}}		% Opsaetning af \SI (DE for komma som decimalseparator) 
-%\usepackage[version=3]{mhchem} 			% Kemi-pakke til flot og let notation af formler, f.eks. \ce{Fe2O3}
+\usepackage[version=3]{mhchem} 				% Kemi-pakke til flot og let notation af formler, f.eks. \ce{Fe2O3}
 %\usepackage{rsphrase}						% Kemi-pakke til RS-saetninger, f.eks. \rsphrase{R1}
+
+\usepackage{tabularx}
 
 % ¤¤ Referencer og kilder ¤¤ %
 \usepackage[danish]{varioref}				% Muliggoer bl.a. krydshenvisninger med sidetal (\vref)
@@ -42,8 +49,8 @@
 \usepackage{listings}						% Placer kildekode i dokumentet med \begin{lstlisting}...\end{lstlisting}
 \usepackage{lipsum}							% Dummy text \lipsum[..]
 \usepackage[shortlabels]{enumitem}			% Muliggoer enkelt konfiguration af lister
-%\usepackage{pdfpages}						% Goer det muligt at inkludere pdf-dokumenter med kommandoen \includepdf[pages={x-y}]{fil.pdf}	
-%\pdfoptionpdfminorversion=6					% Muliggoer inkludering af pdf dokumenter, af version 1.6 og hoejere
+\usepackage{pdfpages}						% Goer det muligt at inkludere pdf-dokumenter med kommandoen \includepdf[pages={x-y}]{fil.pdf}	
+\pdfoptionpdfminorversion=6					% Muliggoer inkludering af pdf dokumenter, af version 1.6 og hoejere
 \pretolerance=2500 							% Justering af afstand mellem ord (hoejt tal, mindre orddeling og mere luft mellem ord)
 
 % Kommentarer og rettelser med \fxnote. Med 'final' i stedet for 'draft' udloeser hver note en error i den faerdige rapport.
@@ -118,7 +125,7 @@
 	\renewcommand\contentsname{Indholdsfortegnelse}	
 	\renewcommand\appendixpagename{Appendiks}
 	\renewcommand\appendixtocname{Appendiks}
-% %	\renewcommand\cftchaptername{\chaptername~}				% Skriver "Kapitel" foran kapitlerne i indholdsfortegnelsen
+	\renewcommand\cftchaptername{\chaptername~}				% Skriver "Kapitel" foran kapitlerne i indholdsfortegnelsen
 	\renewcommand\cftappendixname{\appendixname~}			% Skriver "Appendiks" foran appendiks i indholdsfortegnelsen
 }
 
@@ -166,10 +173,10 @@
 }
 \nouppercaseheads											% Ingen Caps oenskes
 
-\makeevenhead{Uni}{Ingeniørhøjskolen}{}{Aarhus Universitet}	% Definerer lige siders sidehoved (\makeevenhead{Navn}{Venstre}{Center}{Hoejre})
-\makeoddhead{Uni}{Ingeniørhøjskolen}{}{Aarhus Universitet}	% Definerer ulige siders sidehoved (\makeoddhead{Navn}{Venstre}{Center}{Hoejre})
-\makeevenfoot{Uni}{}{}{Side \thepage{} af \thelastpage}							% Definerer lige siders sidefod (\makeevenfoot{Navn}{Venstre}{Center}{Hoejre})
-\makeoddfoot{Uni}{}{}{Side \thepage{} af \thelastpage}								% Definerer ulige siders sidefod (\makeoddfoot{Navn}{Venstre}{Center}{Hoejre})
+\makeevenhead{Uni}{Gruppe 2}{}{\leftmark}				% Definerer lige siders sidehoved (\makeevenhead{Navn}{Venstre}{Center}{Hoejre})
+\makeoddhead{Uni}{\rightmark}{}{Ingeniør Højskolen Aarhus}			% Definerer ulige siders sidehoved (\makeoddhead{Navn}{Venstre}{Center}{Hoejre})
+\makeevenfoot{Uni}{\thepage}{}{}							% Definerer lige siders sidefod (\makeevenfoot{Navn}{Venstre}{Center}{Hoejre})
+\makeoddfoot{Uni}{}{}{\thepage}								% Definerer ulige siders sidefod (\makeoddfoot{Navn}{Venstre}{Center}{Hoejre})
 \makeheadrule{Uni}{\textwidth}{0.5pt}						% Tilfoejer en streg under sidehovedets indhold
 \makefootrule{Uni}{\textwidth}{0.5pt}{1mm}					% Tilfoejer en streg under sidefodens indhold
 
@@ -194,29 +201,28 @@
 }
 
 % ¤¤ Specielle tegn ¤¤ %
-\newcommand{\decC}{^{\circ}\text{C}}						% Genvej til "grader Celsius"
-\newcommand{\dec}{^{\circ}}									% Genvej til "grader"
-\newcommand{\m}{\cdot}										% Genvej til gange-tegn
+\newcommand{\decC}{^{\circ}\text{C}}
+\newcommand{\dec}{^{\circ}}
+\newcommand{\m}{\cdot}
+
 
 %%%% ORDDELING %%%%
 
 \hyphenation{}
 
-
-%%%% KODELISTING %%%%
 % Kodelisting. Husk at læse manualen hvis du vil lave fancy ting.
 % Manual: http://mirror.ctan.org/macros/latex/contrib/listings/listings.pdf
-\renewcommand{\lstlistingname}{Kode}
 \usepackage{pxfonts}
 \usepackage{listings}
 \lstset{language=VHDL,
-	basicstyle=\ttfamily \footnotesize,
+	basicstyle=\ttfamily,
 	keywordstyle=\bfseries,
 	frame=single,
 	numbers=left,
 	breaklines=true,
+	numberstyle=\footnotesize,
 	tabsize=4, 
 	showstringspaces=false
-	morekeywords={include, printf}
-}	
+	%morekeywords={include, printf}
+}
 
