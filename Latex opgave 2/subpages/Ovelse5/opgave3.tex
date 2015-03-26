@@ -1,7 +1,7 @@
 \section{Opgave 3 - Guess a HEX number game}
 \begin{enumerate}
 	\item[1)]
-	Vi skriver koden for vores Guessgame som det ses på figur \ref{lst:Guessgame}.\\
+	Vi skriver koden for vores Guessgame som det ses i kode \ref{lst:Guessgame}.\\
 	\begin{lstlisting}[caption={Behavioral style kode for Guessgame},label={lst:Guessgame}]
 library ieee;
 use ieee.std_logic_1164.all;
@@ -23,9 +23,6 @@ count: process (set, show, try)
 variable target : std_logic_vector(7 downto 0);
 
 begin
-
---target := "00000000";
-
 if set = '0' then target := input;
 elsif show = '0' then 
 i_seg1 <= target(3 downto 0);
@@ -131,37 +128,38 @@ end game_process;
 	Vi downloader programmet til vores DE2-board, hvor SW[0-3] vises på HEX0, SW[4-7] vises på HEX1, KEY3 = set, KEY2 = show og KEY1 = try. \\
 	\begin{figure}[h]
 		\centering
-		\includegraphics[scale=0.8]{pictures/Oevelse5/opg3/guess_set.JPG}
+		\includegraphics[scale=0.15]{pictures/Oevelse5/opg3/guess_set.JPG}
 		\caption{}
 		\label{fig:GuessSet}
 	\end{figure}
 	\begin{figure}[h]
 		\centering
-		\includegraphics[scale=0.8]{pictures/Oevelse5/opg3/guess_try_lo.JPG}
+		\includegraphics[scale=0.15]{pictures/Oevelse5/opg3/guess_try_lo.JPG}
 		\caption{}
 		\label{fig:GuessTryLo}
 	\end{figure}
 	\begin{figure}[h]
 		\centering
-		\includegraphics[scale=0.8]{pictures/Oevelse5/opg3/guess_try_hi.JPG}
+		\includegraphics[scale=0.15]{pictures/Oevelse5/opg3/guess_try_hi.JPG}
 		\caption{}
 		\label{fig:GuessTryHi}
 	\end{figure}
 	\begin{figure}[h]
 		\centering
-		\includegraphics[scale=0.8]{pictures/Oevelse5/opg3/guess_try_ok.JPG}
+		\includegraphics[scale=0.15]{pictures/Oevelse5/opg3/guess_try_ok.JPG}
 		\caption{}
 		\label{fig:GuessTryOk}
 	\end{figure}
 	\begin{figure}[h]
 		\centering
-		\includegraphics[scale=0.8]{pictures/Oevelse5/opg3/guess_show.JPG}
+		\includegraphics[scale=0.15]{pictures/Oevelse5/opg3/guess_show.JPG}
 		\caption{}
 		\label{fig:GuessShow}
 	\end{figure}
-		\item[1)]
-		Vi skriver koden for vores Guessgame som det ses på figur \ref{lst:Guessgame}.\\
-		\begin{lstlisting}[caption={Behavioral style kode for Guessgame},label={lst:Guessgame}]
+	\clearpage
+		\item[3)]
+		Vi skriver koden for vores Guessgame til 2 spillere, som det ses i kode \ref{lst:Guessgame2pl}.\\
+		\begin{lstlisting}[caption={Behavioral style kode for Guessgame},label={lst:Guessgame2pl}]
 		library ieee;
 		use ieee.std_logic_1164.all;
 		use ieee.numeric_std.all;
@@ -181,9 +179,7 @@ end game_process;
 		
 		if player = '1' then
 		segPl <= "1001111"; -- 1
-		
-		--gg: entity work.guessgame port map (input => input, set => set, show => show, try => try, seg1 => seg1, seg10 => seg10);
-		
+
 		if set = '0' then target := input;
 		elsif show = '0' then 
 		i_seg1 <= target(3 downto 0);
