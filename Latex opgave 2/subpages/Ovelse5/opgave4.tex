@@ -15,16 +15,19 @@
 	begin
 	comp: process (input)
 	begin
-	nand_8 <='0'; --default - forudsætter at alle input er høje, og dermed output = 0
+	nand_8 <='0';
 	
 	for i in 7 downto 0 loop
-	if (input(i) = '0') then nand_8 <= '1'; --Hvis bare ét input er lavt, vil output blive 1
+	if (input(i) = '0') then nand_8 <= '1'; 
 	exit;
 	end if;
 	end loop;
 	end process comp;
 	end nand_process;
 	\end{lstlisting}
+	Jævnfør linje 13: Forudsætter at alle input er høje, og dermed output = 0\\
+	Jævnfør linje 16: Hvis bare ét input er lavt, vil output blive 1\\
+	\clearpage
 	Med en functional simulation ser vi at koden virker efter hensigten, som det ses på figur \ref{fig:8innand}.\\
 	\begin{figure}[h]
 		\centering
