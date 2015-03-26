@@ -164,26 +164,31 @@ end game_process;
 		use ieee.std_logic_1164.all;
 		use ieee.numeric_std.all;
 		
-		entity guessgametwop is 
+		entity guessgametwo is 
 		port (input : in std_logic_vector(7 downto 0);
 		set, show, try, player : in std_logic;
 		seg1, seg10, segPl : out std_logic_vector(6 downto 0));
-		end guessgametwop;
+		end guessgametwo;
 		
-		architecture game_process of guessgametwop is
-		
+		architecture game_process of guessgametwo is
+		signal i_input10 : std_logic_vector(7 downto 4);
+		signal i_input1 : std_logic_vector(3 downto 0);
+		signal i_seg1, i_seg10 : std_logic_vector(3 downto 0);
 		begin
 		count: process (set, show, try)
 		
+		variable target1, target2 : std_logic_vector(7 downto 0);
+		
 		begin
 		
-		if player = '1' then
+		if player = '0' then
 		segPl <= "1001111"; -- 1
-
-		if set = '0' then target := input;
+		
+		
+		if set = '0' then target1 := input;
 		elsif show = '0' then 
-		i_seg1 <= target(3 downto 0);
-		i_seg10 <= target(7 downto 4);
+		i_seg1 <= target1(3 downto 0);
+		i_seg10 <= target1(7 downto 4);
 		case i_seg1 is
 		when "0000" => seg1 <= "0000001"; -- 0
 		when "0001" => seg1 <= "1001111"; -- 1
@@ -223,13 +228,13 @@ end game_process;
 		when others => seg10 <= "1111111"; -- Slukket
 		end case;
 		elsif try = '0' then 
-		if input > target then --output Hi
+		if input > target1 then --output Hi
 		seg10 <= "1001000"; 
 		seg1 <= "1111001";
-		elsif input < target then -- output Lo
+		elsif input < target1 then -- output Lo
 		seg10 <= "1110001"; 
 		seg1 <= "1100010";
-		elsif input = target then -- output --
+		elsif input = target1 then -- output --
 		seg10 <= "1111110"; 
 		seg1 <= "1111110";
 		end if;
@@ -278,14 +283,14 @@ end game_process;
 		end if;
 		end if;
 		
-		if player = '0' then
+		if player = '1' then
 		segPl <= "0010010"; -- 2
 		
 		
-		if set = '0' then target := input;
+		if set = '0' then target2 := input;
 		elsif show = '0' then 
-		i_seg1 <= target(3 downto 0);
-		i_seg10 <= target(7 downto 4);
+		i_seg1 <= target2(3 downto 0);
+		i_seg10 <= target2(7 downto 4);
 		case i_seg1 is
 		when "0000" => seg1 <= "0000001"; -- 0
 		when "0001" => seg1 <= "1001111"; -- 1
@@ -325,13 +330,13 @@ end game_process;
 		when others => seg10 <= "1111111"; -- Slukket
 		end case;
 		elsif try = '0' then 
-		if input > target then --output Hi
+		if input > target2 then --output Hi
 		seg10 <= "1001000"; 
 		seg1 <= "1111001";
-		elsif input < target then -- output Lo
+		elsif input < target2 then -- output Lo
 		seg10 <= "1110001"; 
 		seg1 <= "1100010";
-		elsif input = target then -- output --
+		elsif input = target2 then -- output --
 		seg10 <= "1111110"; 
 		seg1 <= "1111110";
 		end if;
