@@ -7,23 +7,45 @@
 	
 	Når alarmen udløses, lader vi LEDR0 lyse rødt, som det fremgår på \textbf{billederne} nedenfor.
 	
-		\begin{lstlisting}[caption={Koden for øverste lag af Alarm Watch},label={lst:alarmWatch}]
+	
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.45]{pictures/Oevelse6/opg3/AlarmOn.JPG}
+			\caption{Alarm er igang (LEDR0 lyser)}
+			\label{fig:alarmOn}
+		\end{figure}
+
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.45]{pictures/Oevelse6/opg3/AlarmOff.JPG}
+			\caption{Alarm er ikke aktiv (LEDR0 lyser ikke)}
+			\label{fig:alarmOff}
+		\end{figure}
+
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.45]{pictures/Oevelse6/opg3/AlarmMaxValue.JPG}
+			\caption{Alarm har nået maksimal værdi}
+			\label{fig:alarmMaxValue}
+		\end{figure}
+
+
+	VHDL-koden for programmet er følgende:
+	
+	\begin{lstlisting}[caption={Koden for øverste lag af Alarm Watch},label={lst:alarmWatch}]
 		
 	library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
 entity Alarm is
 port (clk, reset, view, speed: in std_logic;
-	--	mode : in std_logic_vector(1 downto 0);
 		AL_MIN_1, AL_MIN_10, AL_HOUR_1, AL_HOUR_10: in std_logic_vector(3 downto 0);
 		seg1, seg10, seg100, seg1000, seg10000, seg100000: out std_logic_vector(6 downto 0);
 		ALARM : out std_logic);
 		end Alarm;
 		
 architecture TimingAlarm of Alarm is
-
 
 signal AL_MIN_1_SIG, AL_MIN_10_SIG,AL_HOUR_1_SIG, AL_HOUR_10_SIG : std_logic_vector(3 downto 0);
 signal comp_min1, comp_min10, comp_hour1, comp_hour10 : std_logic_vector (3 downto 0);
