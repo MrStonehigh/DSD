@@ -2,6 +2,9 @@
 \begin{enumerate}
 	\item[1)]
 	
+	Som anmodet i opgavebeskrivelsen, har vi skrevet programmet som en Moore state machine først. Altså, ændrer Moore output værdi, alt efter hvilken state den skiftes til. Denne værdi er clock-reguleret.
+	
+	Derefter har vi tilføjet Mealy state machinen inde i state-init, hvor den regulerer Mealy output værdien efter værdierne for A og B. Denne værdi er IKKE clock-reguleret.
 	VHDL-koden for programmet er følgende:
 	
 \begin{lstlisting}[caption={Kode for MeeMoo state machine},label={lst:MeeMooSM}]

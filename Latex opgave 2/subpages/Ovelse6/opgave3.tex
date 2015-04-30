@@ -5,30 +5,7 @@
 	
 	Vi ændrer dog i bin-value fra de underlæggende filer, således at vi kan sammenligne signal-værdier mellem klokkens værdi, og den alarmtid som vi sætter. 
 	
-	Når alarmen udløses, lader vi LEDR0 lyse rødt, som det fremgår på \textbf{billederne} nedenfor.
-	
-	
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.45]{pictures/Oevelse6/opg3/AlarmOn.JPG}
-			\caption{Alarm er igang (LEDR0 lyser)}
-			\label{fig:alarmOn}
-		\end{figure}
-
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.45]{pictures/Oevelse6/opg3/AlarmOff.JPG}
-			\caption{Alarm er ikke aktiv (LEDR0 lyser ikke)}
-			\label{fig:alarmOff}
-		\end{figure}
-
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.45]{pictures/Oevelse6/opg3/AlarmMaxValue.JPG}
-			\caption{Alarm har nået maksimal værdi}
-			\label{fig:alarmMaxValue}
-		\end{figure}
-
+	Når alarmen udløses, lader vi LEDR0 lyse rødt, som det fremgår på billederne under koden.
 
 	VHDL-koden for programmet er følgende:
 	
@@ -134,6 +111,29 @@ end process;
 end TimingAlarm;
 
 \end{lstlisting}
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{pictures/Oevelse6/opg3/AlarmOn.JPG}
+	\caption{Alarm er igang (LEDR0 lyser)}
+	\label{fig:alarmOn}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{pictures/Oevelse6/opg3/AlarmOff.JPG}
+	\caption{Alarm er ikke aktiv (LEDR0 lyser ikke)}
+	\label{fig:alarmOff}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{pictures/Oevelse6/opg3/AlarmMaxValue.JPG}
+	\caption{Alarm har nået maksimal værdi}
+	\label{fig:alarmMaxValue}
+\end{figure}
+
 
 \end{enumerate}
 	

@@ -2,7 +2,7 @@
 \section{Opgave 2 - Code Lock}
 \begin{enumerate}
 	\item[1)]
-	Vi har anvendt et Moore-template fra Quartus til at udforme nedenstående VHDL-kode for programmet:
+	Vi har anvendt et Moore-template fra Quartus til at udforme nedenstående VHDL-kode for programmet: 
 	
 \begin{lstlisting}[caption={VHDL koden for kodelås},label={lst:code_lock}]
 library ieee;
@@ -121,7 +121,24 @@ end rtl;
 
 Vi har pin-assignet på De2-boardet, således at koden kan skrives på SW[3..0], enter-knap ligger på KEY[0] og reset-knap på KEY[3]. Outputs ligger henholdsvis på LEDG[7], som viser om systemet er låst eller oplåst og LEDR[2:0], som viser hvilken state vi er i. 
 
+Dette betyder, at når den står i Idle, som det ses på figur \ref{fig:StateMachineDiagram}, lyser LEDR[0]. Indtastes koden korrekt, skifter vi via Moore State til "Code 1 accepted" state, og LEDR[1] lyser også.
+Indtastes 2. kode også korrekt, lyser LEDR[2] op. 
+Indtastes 3. kode korrekt, slukkes LEDR[2..0] og LEDR[7] tændes. Således kan man altid se hvilken kode man er nået til, og får grønt lys når låsen er åbnet. 
+
 For os gav det mest mening, at tænde LEDG[7] når systemet var låst op, fremfor at have den tændt når den var låst, som skrevet i opgavebeskrivelsen. 
+
+
+Såfremt at en kode er indskrevet forkert, går vi tilbage til Idle og alene LEDR[0] er tændt, netop som det fremgår af figur \ref{fig:StateMachineDiagram}. 
+
+Skrives en kode forkert 3. gang, uanset hvilket step den er nået til, vil koden gå i "Permanently Locked" state og slukke LEDR[2..0], indtil Reset knappen presses.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.6
+]{pictures/Oevelse7/opg2/StateMachineDiagram.JPG}
+	\caption{State Machine Diagram fra Opgavebeskrivelsen}
+	\label{fig:StateMachineDiagram}
+\end{figure}
 
 \begin{figure}[h!]
 	\centering
