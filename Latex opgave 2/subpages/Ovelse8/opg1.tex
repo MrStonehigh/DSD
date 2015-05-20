@@ -71,28 +71,6 @@ Vi gemmer programmet som package på følgende måde:
 \begin{lstlisting}[caption={Kode for package},label={lst:opg1_2}]
 library ieee;
 use ieee.std_logic_1164.all;
-use work.exercis8_2.all;
-
-entity Exercise8_2 is 
-port ( A, B : in std_logic;
-XOR_out, AND_out, OR_out : out std_logic);
-
-end Exercise8_2;
-
-architecture simplePackage of Exercise8_2 is
-
-begin 
-XOR_out<= func_XOR(A,B);
-proc_and_or(A, B, AND_out, OR_out);
-
-end simplePackage;
-\end{lstlisting}
-
-Denne package kan testes ved hjælp af følgende kode:
-
-\begin{lstlisting}[caption={Kode for test af package},label={lst:opg1_2test}]
-library ieee;
-use ieee.std_logic_1164.all;
 
 package Exercis8_2 is
 function func_XOR (A : std_logic ; B : std_logic)return std_logic ;
@@ -114,6 +92,29 @@ OR_out <= (A or B);
 end proc_and_or;
 
 end Exercis8_2;
+\end{lstlisting}
+
+Denne package kan testes ved hjælp af følgende kode:
+
+\begin{lstlisting}[caption={Kode for test af package},label={lst:opg1_2test}]
+library ieee;
+use ieee.std_logic_1164.all;
+use work.exercis8_2.all;
+
+entity Exercise8_2 is 
+port ( A, B : in std_logic;
+XOR_out, AND_out, OR_out : out std_logic);
+
+end Exercise8_2;
+
+architecture simplePackage of Exercise8_2 is
+
+begin 
+XOR_out<= func_XOR(A,B);
+proc_and_or(A, B, AND_out, OR_out);
+
+end simplePackage;
+
 \end{lstlisting}
 
 Vi overfører programmet til DE2-boardet og tester. Dette giver os, som forventet, samme resultat som vist på figur \ref{fig:figur0_0}, \ref{fig:figur0_1} og \ref{fig:figur1_1}.
