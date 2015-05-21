@@ -10,10 +10,10 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity code_lock is
-port ( clk, reset, enter : in std_logic;
-code : in std_logic_vector(3 downto 0);
-lock : out std_logic;
-state_led : out std_logic_vector(2 downto 0));
+	port ( clk, reset, enter : in std_logic;
+	code : in std_logic_vector(3 downto 0);
+	lock : out std_logic;
+	state_led : out std_logic_vector(2 downto 0));
 end code_lock;
 
 architecture rtl of code_lock is
@@ -30,87 +30,86 @@ signal code1, code2, code3 : std_logic_vector(3 downto 0);
 begin
 
 -- Logic to advance to the next state
-state_reg: process (clk, reset)
-begin
-if reset = '0' then
-err_cnt <= "00";
-state <= idle;
-elsif (rising_edge(clk)) then
-enter_last <= enter;
-case state is
+	state_reg: process (clk, reset)
+	begin
+		if reset = '0' then
+			err_cnt <= "00";
+			state <= idle;
+		elsif (rising_edge(clk)) then
+			enter_last <= enter;
+			case state is
+			when wrong_code=>
+				err_cnt <= std_logic_vector(unsigned(err_cnt) + 1);
+				if err_cnt >= "10" then
+					state <= perm_lock;
+				else
+					state <= idle;
+				end if;
 
-when wrong_code=>
-err_cnt <= std_logic_vector(unsigned(err_cnt) + 1);
-if err_cnt >= "10" then
-state <= perm_lock;
-else
-state <= idle;
-end if;
+			when perm_lock =>
+				state <= perm_lock;
 
-when perm_lock =>
-state <= perm_lock;
+			when idle =>
+				lock <= '0';
+				if enter_last = '1' and enter = '0' then
+					if code = code1 then
+						state <= code1acc;
+					else 
+						state <= wrong_code;
+					end if;
+				else
+					state <= idle;
+				end if;
 
-when idle =>
-lock <= '0';
-if enter_last = '1' and enter = '0' then
-if code = code1 then
-state <= code1acc;
-else 
-state <= wrong_code;
-end if;
-else
-state <= idle;
-end if;
+			when code1acc =>
+				if enter_last = '1' and enter = '0' then
+					if code = code2 then
+						state <= code2acc;
+					else 
+						state <= wrong_code;
+					end if;
+				else
+					state <= code1acc;
+				end if;
 
-when code1acc =>
-if enter_last = '1' and enter = '0' then
-if code = code2 then
-state <= code2acc;
-else 
-state <= wrong_code;
-end if;
-else
-state <= code1acc;
-end if;
+			when code2acc =>
+				if enter_last = '1' and enter = '0' then
+					if code = code3 then
+						state <= unlocked;
+					else 
+						state <= wrong_code;
+					end if;
+				else
+					state <= code2acc;
+				end if;
 
-when code2acc =>
-if enter_last = '1' and enter = '0' then
-if code = code3 then
-state <= unlocked;
-else 
-state <= wrong_code;
-end if;
-else
-state <= code2acc;
-end if;
-
-when unlocked =>
-lock <= '1';
-if enter_last = '1' and enter = '0' then
-state <= idle;
-else
-state <= unlocked;
-end if;
-end case;
-end if;
+			when unlocked =>
+				lock <= '1';
+				if enter_last = '1' and enter = '0' then
+					state <= idle;
+				else
+					state <= unlocked;
+				end if;
+			end case;
+		end if;
 end process;
 
 -- Output depends solely on the current state
 ledoutput: process (state)
 begin
-case state is
-when idle =>
-state_led <= "001";
-code1 <= "0001";
-when code1acc =>
-state_led <= "011";
-code2 <= "0010";
-when code2acc =>
-state_led <= "111";
-code3 <= "0011";
-when others =>
-state_led <= "000";
-end case;
+	case state is
+	when idle =>
+		state_led <= "001";
+		code1 <= "0001";
+	when code1acc =>
+		state_led <= "011";
+		code2 <= "0010";
+	when code2acc =>
+		state_led <= "111";
+		code3 <= "0011";
+	when others =>
+		state_led <= "000";
+	end case;
 end process;
 
 end rtl;
@@ -149,28 +148,28 @@ Skrives en kode forkert 3. gang, uanset hvilket step den er nået til, vil koden
 		
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.4]{pictures/Oevelse7/opg2/StateTwo.JPG}
+	\includegraphics[scale=0.45]{pictures/Oevelse7/opg2/StateTwo.JPG}
 	\caption{State two - code 1 accepted}
 	\label{fig:}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.45]{pictures/Oevelse7/opg2/StateThree.JPG}
+	\includegraphics[scale=0.5]{pictures/Oevelse7/opg2/StateThree.JPG}
 	\caption{State three - code 2 accepted}
 	\label{fig:}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.45]{pictures/Oevelse7/opg2/StateUnlocked.JPG}
+	\includegraphics[scale=0.5]{pictures/Oevelse7/opg2/StateUnlocked.JPG}
 	\caption{State unlocked - code 3 accepted}
 	\label{fig:}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.45]{pictures/Oevelse7/opg2/StatePermLocked.JPG}
+	\includegraphics[scale=0.5]{pictures/Oevelse7/opg2/StatePermLocked.JPG}
 	\caption{State permanently locked}
 	\label{fig:}
 \end{figure}
