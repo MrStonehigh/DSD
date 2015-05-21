@@ -1,4 +1,4 @@
-
+\clearpage
 \section{Opgave 2 - Code Lock}
 \begin{enumerate}
 	\item[1)]
@@ -17,10 +17,8 @@ entity code_lock is
 end code_lock;
 
 architecture rtl of code_lock is
-
 -- Build an enumerated type for the state machine
 type state_type is (idle, code1acc, code2acc, wrong_code, perm_lock, unlocked);
-
 -- Register to hold the current state
 signal state   : state_type;
 signal err_cnt : std_logic_vector(1 downto 0);
@@ -28,7 +26,6 @@ signal enter_last : std_logic;
 signal code1, code2, code3 : std_logic_vector(3 downto 0);
 
 begin
-
 -- Logic to advance to the next state
 	state_reg: process (clk, reset)
 	begin

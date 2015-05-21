@@ -1,3 +1,4 @@
+\clearpage
 \section{Opgave 2 - French flag}
 
 \begin{enumerate}
@@ -167,23 +168,20 @@ clockOut <= clk25;               -- 25 MHz clock for DAC
 blank <= not (vBlank or hBlank); -- active low blanking.
 compSync <= '1'; 				 -- Never perform any composite sync. 
 end testGenerator;
-
 	\end{lstlisting}
-
 \item[3)] 
-
 Vi har downloadet programmet til DE2-boardet og opnår flaget som ses på figur \ref{fig:frenchFlag}.
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.5]{pictures/Oevelse8/opg2/franskFlag}
+		\includegraphics[scale=0.4]{pictures/Oevelse8/opg2/franskFlag}
 		\caption{Det franske flag vist på VGA-skærmen}
 		\label{fig:frenchFlag}
 	\end{figure}
 Ved at ændre på farvekoderne lavede vi også det Belgiske flag som vist på figur \ref{fig:belgiskflag}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{pictures/Oevelse8/opg2/belgiskFlag}
-	\caption{Det franske flag vist på VGA-skærmen}
+	\includegraphics[scale=0.3]{pictures/Oevelse8/opg2/belgiskFlag}
+	\caption{Det belgiske flag vist på VGA-skærmen}
 	\label{fig:belgiskflag}
 \end{figure}
 \end{enumerate}
