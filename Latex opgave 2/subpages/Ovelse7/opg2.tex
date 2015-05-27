@@ -136,6 +136,13 @@ Skrives en kode forkert 3. gang, uanset hvilket step den er nået til, vil koden
 	\label{fig:StateMachineDiagram}
 \end{figure}
 
+På figur \ref{fig:StateMachineDiagram} ses et SysML state machine diagram, som beskriver vores kodes funktionalitet. De SysML termer som bruges i en state machine, kan beskrives ved hjælp af Mealey og Moore kode:
+
+\textbf{\textit{SysML triggers og guards}:} \textit{Triggers} er i dette tilfælde når man trykker på Enter. Dermed svarer det til Mealy FSM, da det er inputtet (Enter) i den givne state, der medfører en trigning. \textit{Guards} er også Mealy FSM, da det kræver den rigtige input guard til det rigtige state før man skifter til næste state. 
+\\\textbf{\textit{SysML do actions}:} Dette er Moore FSM, da det kun udføres i en bestemt state. F.eks. er DO handlingen; lock='1' inde i den state som hedder Locked, hvorimod det i staten Unlocked er lock='0'.
+\\\textbf{\textit{SysML entry actions}:} Disse er ligesom \textit{do-actions} Moore FSM, da det udelukkende handler om, hvilken state man går ind i, og ikke har noget at gøre med et input.
+\\\textbf{\textit{SysML exit actions}: }Der gælder det samme for \textit{exit actions} som for entry actions, da det igen handler om den state man forlader.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.5]{pictures/Oevelse7/opg2/StateIdle.JPG}
